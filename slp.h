@@ -39,4 +39,12 @@ struct A_expList_ {enum {A_pairExpList, A_lastExpList} kind;
 A_expList A_PairExpList(A_exp head, A_expList tail);
 A_expList A_LastExpList(A_exp last);
 
+typedef struct table *Table_;
+typedef struct IntAndTable *iTable_;
+struct table {string id; int value; Table_ tail;};
+//Table中存的是id->寄存器的映射
+Table_ Table(string id,int value,struct table *tail);
+struct IntAndTable {int value ;bool isid; Table_ t;};
+//iTable中存的是寄存器或者num
+iTable_ iTable(int value, bool isid,Table_ t);
 #endif

@@ -20,26 +20,25 @@ $(TESTCASE_DIR)/%.ll: $(TESTCASE_DIR)/%.out
 	echo TEST $*
 	./$< $@
 
-$(TESTCASE_DIR)/%.out: $(TESTCASE_DIR)/%.o $(TESTCASE_DIR)/%.main.o slp.o util.o print_slp.o interp.o table.o
+$(TESTCASE_DIR)/%.out: $(TESTCASE_DIR)/%.o $(TESTCASE_DIR)/%.main.o slp.o util.o print_slp.o interp.o
 	cc -g $^ -o $@
 
 $(TESTCASE_DIR)/%.o: $(TESTCASE_DIR)/%.c slp.h util.h prog1.h
 	cc -g -c $< -o $@
 
-$(TESTCASE_DIR)/%.main.o: main.c slp.h slp.c util.h util.c prog1.h $(TESTCASE_DIR)/%.c print_slp.h print_slp.c
+$(TESTCASE_DIR)/%.main.o: main.c slp.h slp.c util.h util.c prog1.h $(TESTCASE_DIR)/%.c print_slp.h print_slp.c interp.h interp.c
 	cc -g -c main.c -o $@
 
 print_slp.o: print_slp.c slp.h util.h 
 	cc -g -c print_slp.c
 
-interp.o: interp.c interp.h slp.h table.h
+interp.o: interp.c interp.h slp.h util.h
 	cc -g -c interp.c
 
 slp.o: slp.c slp.h util.h
 	cc -g -c slp.c
 
-table.o: table.c table.h util.h
-	cc -g -c table.c
+
 
 util.o: util.c util.h
 	cc -g -c util.c

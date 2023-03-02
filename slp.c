@@ -56,5 +56,18 @@ A_expList A_LastExpList(A_exp last) {
   return e;
 }
 
+Table_ Table(string id,int value,struct table *tail){
+  Table_ t = checked_malloc(sizeof(*t));
+  t->id=id; t->value=value; t->tail=tail;
+  return t;
+}
+
+iTable_ iTable(int value,bool isid, Table_ t){
+    iTable_ it = checked_malloc(sizeof(*it));
+    it->value = value;
+    it->isid=isid;
+    it->t = t;
+    return it;
+}
 
 
