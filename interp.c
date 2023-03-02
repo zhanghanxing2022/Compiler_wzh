@@ -80,8 +80,8 @@ Table_ update(Table_ t, string id,iTable_ value){
     else{
       fprintf(stream, "    %%%d = add i32 %d, 0\n",begin_id,value->value);
     }
-    begin_id++;
-    return Table(id, begin_id, t);
+  
+    return Table(id, begin_id++, t);
 }
 //interpStm函数对语句解释
 Table_ interpStm(A_stm s, Table_ t){
