@@ -130,9 +130,8 @@ iTable_ interpExp(A_exp e, Table_ t){
         }
         case A_opExp:{
             iTable_ left = interpExp(e->u.op.left, t);
-            iTable_ right = interpExp(e->u.op.right, t);
-            
-                
+            iTable_ right = interpExp(e->u.op.right, left->t);
+           
             return p_binop(left,right,e->u.op.oper,t);
              
             
